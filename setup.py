@@ -17,7 +17,6 @@ setup(author="Timid Robot Zehta",
       license="MIT License",
       long_description=long_description,
       name="python-iqm",
-      py_modules=["iqm"],
       url="https://github.com/ClockworkNet/python-iqm",
       version=iqm.VERSION,
       )
