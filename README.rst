@@ -16,7 +16,7 @@ trade-off between accuracy and memory usage can be manged with its
 `round_digits` argument.
 
 Usage
-=====
+-----
 
 .. code:: python
 
@@ -36,7 +36,7 @@ MovingIQM
 This class sacrifices accuracy for speed and low memory usage.
 
 Usage
-=====
+-----
 
 .. code:: python
 
