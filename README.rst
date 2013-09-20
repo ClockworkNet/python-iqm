@@ -27,7 +27,7 @@ Usage
     for line in open("source1_numbers_list.txt", "r"):
         diqm("source1", line)
 
-    print "# {:12,.2f}    Dict IQM".format(diqm.final_report("source1"))
+    print "# {:12,.2f}    Dict IQM".format(diqm.report("source1"))
 
 
 MovingIQM
@@ -47,7 +47,7 @@ Usage
     for line in open("source1_numbers_list.txt", "r"):
         miqm("source1", line)
 
-    print "# {:12,.2f}    Moving IQM".format(miqm.final_report("source1"))
+    print "# {:12,.2f}    Moving IQM".format(miqm.report("source1"))
 
 
 License

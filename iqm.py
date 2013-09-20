@@ -2,7 +2,7 @@ from collections import defaultdict
 from collections import deque
 
 
-VERSION = "0.1.1"
+VERSION = "0.2.0"
 
 
 class DictIQM():
@@ -64,6 +64,33 @@ class DictIQM():
         else:
             return {"num_counts": defaultdict(float), "count": 0}
 
+    def __call__(self, key, num):
+        """For the key provided, increment its num bucket (dict key) count
+        (dict value)."""
+        as_ints = self.as_ints
+        bound = self.bound
+        data = self.data
+        round_digits = self.round_digits
+        tenth_precise = self.tenth_precise
+        try:
+            num = num.strip()
+        except:
+            pass
+        try:
+            num = float(num)
+            if as_ints:
+                if tenth_precise and num < bound:
+                    num = round(num, (round_digits + 1))
+                else:
+                    num = round(num, round_digits)
+                num = int(num)
+            else:
+                num = round(num, round_digits)
+        except:
+            num = None
+        data[key]["num_counts"][num] += 1
+        data[key]["count"] += 1
+
     def remove_quartile(self, quartile, numbers, num_counts):
         """Removes the first quartile from a dictionary containing containing
         number buckets (dict key) and the count of their occurrences
@@ -80,7 +107,7 @@ class DictIQM():
                 return num_counts
         raise Exception("quartile was never decreased to zero")
 
-    def compute_iqm(self, key):
+    def report(self, key):
         """Compute the IQM of a dictionary containing number buckets (dict key)
         and the count of their occurrences (dict value).
         """
@@ -131,33 +158,6 @@ class DictIQM():
         iqm = iq_sum / iq_count
         return iqm
 
-    def __call__(self, key, num):
-        """For the key provided, increment its num bucket (dict key) count
-        (dict value)."""
-        as_ints = self.as_ints
-        bound = self.bound
-        data = self.data
-        round_digits = self.round_digits
-        tenth_precise = self.tenth_precise
-        try:
-            num = num.strip()
-        except:
-            pass
-        try:
-            num = float(num)
-            if as_ints:
-                if tenth_precise and num < bound:
-                    num = round(num, (round_digits + 1))
-                else:
-                    num = round(num, round_digits)
-                num = int(num)
-            else:
-                num = round(num, round_digits)
-        except:
-            num = None
-        data[key]["num_counts"][num] += 1
-        data[key]["count"] += 1
-
 
 class MovingIQM():
     """Computes the moving average of the Interquartile Mean (IQM) of a deque
@@ -187,6 +187,22 @@ class MovingIQM():
     def prep_data(self):
         return {"deck": deque("", self.period), "deck_count": 0,
                 "iqm_count": 0, "iqm_sum": 0.0}
+
+    def __call__(self, key, num):
+        """For the key provided, add the num to its deque."""
+        try:
+            num = num.strip()
+        except:
+            pass
+        try:
+            num = float(num)
+        except:
+            num = None
+        data = self.data[key]
+        data["deck"].append(num)
+        data["deck_count"] += 1
+        if data["deck_count"] == self.period:
+            self.iqm_sum(key)
 
     def iqm_sum(self, key):
         """Compute the key's new iqm sum"""
@@ -225,25 +241,9 @@ class MovingIQM():
         data["iqm_count"] += 1
         data["deck_count"] = 0
 
-    def final_report(self, key):
+    def report(self, key):
         """Compute the key's average IQM from the iqm_sum and iqm_count."""
         data = self.data[key]
         self.iqm_sum(key)
         iqm_avg = data["iqm_sum"] / data["iqm_count"]
         return iqm_avg
-
-    def __call__(self, key, num):
-        """For the key provided, add the num to its deque."""
-        try:
-            num = num.strip()
-        except:
-            pass
-        try:
-            num = float(num)
-        except:
-            num = None
-        data = self.data[key]
-        data["deck"].append(num)
-        data["deck_count"] += 1
-        if data["deck_count"] == self.period:
-            self.iqm_sum(key)
