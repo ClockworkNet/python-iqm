@@ -16,7 +16,7 @@ class DictIQM():
     none_action determines how non-numbers are treated (all non-numbers are
     stored as None):
 
-    - discard: discard them
+    - discard: discard them (default)
     - max: replace them with the maximum value
     - min: replace them with the minimum value
 
@@ -138,7 +138,7 @@ class DictIQM():
         round_digits = self.round_digits
         tenth_precise = self.tenth_precise
         try:
-            num = float(num)
+            num = float(num.strip())
             if as_ints:
                 if tenth_precise and num < bound:
                     num = round(num, (round_digits + 1))
@@ -160,7 +160,7 @@ class MovingIQM():
     none_action determines how non-numbers are treated (all non-numbers are
     stored as None):
 
-    - discard: discard them
+    - discard: discard them (default)
     - max: replace them with the maximum value
     - min: replace them with the minimum value
 
@@ -229,7 +229,7 @@ class MovingIQM():
     def __call__(self, key, num):
         """For the key provided, add the num to its deque."""
         try:
-            num = float(num)
+            num = float(num.strip())
         except:
             num = None
         data = self.data[key]

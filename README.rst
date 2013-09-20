@@ -25,7 +25,7 @@ Usage
 
     diqm = DictIQM(round_digits=-1, tenth_precise=True)
     for line in open("source1_numbers_list.txt", "r"):
-        diqm("source1", line.strip())
+        diqm("source1", line)
 
     print "# {:12,.2f}    Dict IQM".format(diqm.final_report("source1"))
 
@@ -45,7 +45,7 @@ Usage
 
     miqm = MovingIQM(1000)
     for line in open("source1_numbers_list.txt", "r"):
-        miqm("source1", line.strip())
+        miqm("source1", line)
 
     print "# {:12,.2f}    Moving IQM".format(miqm.final_report("source1"))
 
