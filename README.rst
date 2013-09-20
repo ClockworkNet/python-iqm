@@ -56,5 +56,5 @@ License
 See `LICENSE`_ (`MIT License`_).
 
 .. _`LICENSE`:
-   https://github.com/ClockworkNet/python-iqm/blob/master/LICENSE.txt
+   https://github.com/ClockworkNet/python-iqm/blob/master/LICENSE
 .. _`MIT License`: http://www.opensource.org/licenses/MIT
