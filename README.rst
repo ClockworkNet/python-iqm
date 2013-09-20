@@ -18,7 +18,8 @@ trade-off between accuracy and memory usage can be manged with its
 Usage
 =====
 
-::
+.. code:: python
+
     from iqm import DictIQM
     import sys
 
@@ -37,7 +38,8 @@ This class sacrifices accuracy for speed and low memory usage.
 Usage
 =====
 
-::
+.. code:: python
+
     from iqm import MovingIQM
     import sys
 
