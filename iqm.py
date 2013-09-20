@@ -2,6 +2,9 @@ from collections import defaultdict
 from collections import deque
 
 
+VERSION = "0.1"
+
+
 class DictIQM():
     """Computes the Interquartile Mean (IQM) of a dictionary containing
     containing number buckets (key) and the count of their occurrences (value).
