@@ -53,8 +53,8 @@ Usage
 License
 =======
 
-See `LICENSE.txt`_ (`MIT License`_).
+See `LICENSE`_ (`MIT License`_).
 
-.. _`LICENSE.txt`:
+.. _`LICENSE`:
    https://github.com/ClockworkNet/python-iqm/blob/master/LICENSE.txt
 .. _`MIT License`: http://www.opensource.org/licenses/MIT
