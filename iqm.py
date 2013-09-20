@@ -137,11 +137,14 @@ class DictIQM():
         as_ints = self.as_ints
         bound = self.bound
         data = self.data
-        num = num.strip()
         round_digits = self.round_digits
         tenth_precise = self.tenth_precise
         try:
-            num = float(num.strip())
+            num = num.strip()
+        except:
+            pass
+        try:
+            num = float(num)
             if as_ints:
                 if tenth_precise and num < bound:
                     num = round(num, (round_digits + 1))
@@ -232,7 +235,11 @@ class MovingIQM():
     def __call__(self, key, num):
         """For the key provided, add the num to its deque."""
         try:
-            num = float(num.strip())
+            num = num.strip()
+        except:
+            pass
+        try:
+            num = float(num)
         except:
             num = None
         data = self.data[key]
