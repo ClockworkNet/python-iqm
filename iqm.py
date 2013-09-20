@@ -2,7 +2,7 @@ from collections import defaultdict
 from collections import deque
 
 
-VERSION = "0.1"
+VERSION = "0.1.1"
 
 
 class DictIQM():
