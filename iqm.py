@@ -2,7 +2,7 @@ from collections import defaultdict
 from collections import deque
 
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 
 
 class DictIQM():
@@ -14,7 +14,7 @@ class DictIQM():
     - round_digits is the digit supplied to the round() function.
     - tenth_precise=True will round to one less digit for the lowest 10%.
       For example: round_digits=-2, tenth_precise would result in numbers less
-      than 100 being rounded to to the nearest 10th.
+      than 100 being rounded to to the nearest 10th instead of 0 or 100.
 
     none_action determines how non-numbers are treated (all non-numbers are
     stored as None):
